@@ -62,6 +62,12 @@
   cursor: default;
 }
 
+#footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+
 @keyframes underline {
   from {
     border-bottom: 1px solid #61dafb;

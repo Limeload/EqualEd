@@ -19,7 +19,7 @@ const NavBar = () => {
           isPending ? "pending" : isActive ? "active" : ""
         }
       >
-        Browse Courses
+        Course Catalog
       </NavLink>
       <NavLink
         to="/courses/new"
