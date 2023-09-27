@@ -6,9 +6,10 @@ const Login = () => {
   (either '/login/student' or '/login/instructor') */
   const match = useMatch('/login/*')
   console.log(match)
+  const test = match.pathname === "/login/student" ? "Student" : match.pathname === "/login/instructor" ? "Instructor" : null
 
   return (
-    <div>Login</div>
+    <div>{test + " Login"}</div>
   )
 }
 
