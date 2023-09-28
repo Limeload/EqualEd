@@ -8,6 +8,7 @@ import MyCourses from './components/MyCourses';
 import NewCourse from './components/NewCourse';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Accessibility from './components/Accessibility';
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/courses/:courseId" element={<Course />} />
         <Route path="/courses/new" element={<NewCourse />} />
       </Routes>
+      <Accessibility />
       <Footer />
     </div>
   );

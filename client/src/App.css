@@ -1,3 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: .75;
+}
+
 .App {
   text-align: center;
   margin-top: 6%;
@@ -55,11 +64,62 @@
 
 #navbar a.active {
   color: #61dafb;
-  animation: .5s ease-in-out box-shadow;
+  animation: .5s ease-in-out press;
 }
 
 #navbar a.active:hover {
   cursor: default;
+}
+
+#widget {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  height: 40%;
+  border: 1px solid #282c34;
+}
+
+.widget-btn {
+  position: fixed;
+  height: 75px;
+  width: 75px;
+  font-size: 40px;
+  border: none;
+  border-radius: 50%;
+  bottom: 5%;
+  right: 5%;
+}
+
+.widget-header {
+  background-color: #61dafb;
+}
+
+.widget-header h2 {
+  margin: 0;
+}
+
+.close-btn {
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.btn-grid {
+  height: 90%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1%;
+  padding: 1%;
+  justify-content: space-evenly;
+}
+
+.feature-btn {
+  border: 1px solid #282c34;
+  border-radius: 5px;
+  background-color: white;
 }
 
 #footer {
@@ -80,7 +140,7 @@
   }
 }
 
-@keyframes box-shadow {
+@keyframes press {
   from {
     box-shadow: 3px 2px 0 0 white;
   }
