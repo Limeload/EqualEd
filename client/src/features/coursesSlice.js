@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+// TODO: update these accordingly when backend is finished
+
 export const fetchCourses = createAsyncThunk("courses/fetchCourses", async () => {
   const response = await fetch("/api/courses");
   const data = await response.json();
@@ -7,7 +9,7 @@ export const fetchCourses = createAsyncThunk("courses/fetchCourses", async () =>
 });
 
 export const addCourse = createAsyncThunk("courses/addCourse", async (formData) => {
-  const r = await fetch("/api/Courses", {
+  const r = await fetch("/api/courses", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

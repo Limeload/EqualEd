@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+// TODO: update these accordingly when backend is finished
+
 export const fetchUser = createAsyncThunk("sessions/fetchUser", async () => {
   const response = await fetch("/api/me");
   const data = await response.json();
