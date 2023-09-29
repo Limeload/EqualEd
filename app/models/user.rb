@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :courses, class_name: "course", foreign_key: "reference_id"
+  has_many :courses
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
