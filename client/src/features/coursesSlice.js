@@ -29,8 +29,7 @@ const coursesSlice = createSlice({
   initialState: {
     entities: [], // array of courses
     status: "idle", // loading state
-    errors: [],
-    selectedCourse: null // id of course in review
+    errors: []
   },
   reducers: {
     courseAdded(state, action) {
@@ -38,13 +37,10 @@ const coursesSlice = createSlice({
     },
     courseUpdated(state, action) {
       const course = state.entities.find((r) => r.id === action.payload.id);
-      course.name = action.payload.name;
-      course.address = action.payload.address;
+      course.title = action.payload.title;
+      course.content = action.payload.content;
     },
-    setCourse(state, action) {
-      state.selectedCourse = parseInt(action.payload) // dispatched with the id of clicked course or null after review submission
-    },
-    resetRestErrors(state) {
+    resetCourseErrors(state) {
       state.errors = []
     }
   },
@@ -75,6 +71,6 @@ const coursesSlice = createSlice({
   }
 })
 
-export const { courseAdded, courseUpdated, setCourse, resetRestErrors } = coursesSlice.actions;
+export const { courseAdded, courseUpdated, setCourse, resetCourseErrors } = coursesSlice.actions;
 
 export default coursesSlice.reducer;
