@@ -2,6 +2,7 @@ import './App.css';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Courses from './components/Courses';
 import Course from './components/Course';
 import MyCourses from './components/MyCourses';
@@ -19,8 +20,9 @@ function App() {
         <Route path="/" element={<Home />} />
         {/* change later to use user.username */}
         <Route path="/me" element={<Profile />} />
-        <Route path="/login/student" element={<Login />} />
-        <Route path="/login/instructor" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup/student" element={<Signup />} />
+        <Route path="/signup/instructor" element={<Signup />} />
         <Route path="/my-courses" element={<MyCourses />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:courseId" element={<Course />} />
