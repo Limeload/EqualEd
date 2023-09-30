@@ -1,11 +1,24 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { logOut } from '../features/sessionsSlice'
+import { useDispatch } from 'react-redux'
 
 // TODO: User Profile NavLink?
 // TODO: Only render Create Course link if user is instructor
-// TODO: Different styling and position for login links; they shouldn't be a tab per se
+// TODO: Render Logout link instead of login/signup when there is a user
+// TODO: Different styling and position for login, signup, logout links; they shouldn't be a tab per se
 
 const NavBar = () => {
+
+  const dispatch = useDispatch()
+
+  const handleClick = () => {
+    fetch('/logout', {
+      method: "DELETE"
+    })
+    dispatch(logOut())
+  }
+
   return (
     <nav id="navbar">
       <NavLink
@@ -56,6 +69,14 @@ const NavBar = () => {
         }
       >
         Instructor Signup
+      </NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "pending" : ""
+        }
+        onClick={handleClick}>
+        Log Out
       </NavLink>
     </nav>
   )
