@@ -23,6 +23,15 @@ puts 'Seeding users'
 #   password_confirmation: 'password123'
 # )
 
+user3 = User.create(
+  username: 'user3',
+  email: 'user3@example.com',
+  user_type: 'Educator',
+  instructor: true,
+  password: 'password123',
+  password_confirmation: 'password123'
+)
+
 puts 'seeding courses'
 
 # course1 = Course.create(
@@ -40,5 +49,6 @@ puts 'seeding enrollments'
 # e1 = Enrollment.create(user_id: 1, course_id: 1, enrolled: true)
 # e2 = Enrollment.create(user_id: 1, course_id: 2, enrolled: true)
 # e3 = Enrollment.create(user_id: 2, course_id: 2, enrolled: true)
+e4 = Enrollment.create(user_id: 2, course_id: 2, enrolled: false)
 
 puts 'seeded'

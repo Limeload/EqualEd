@@ -1,5 +1,3 @@
 class CourseSerializer < ActiveModel::Serializer
-  attributes :id, :title, :content
-
-  has_many :users
+  attributes :id, :title, :content, :enrollments
 end
