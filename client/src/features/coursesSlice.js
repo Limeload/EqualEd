@@ -1,20 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // TODO: update these accordingly when backend is finished
+// ** This one may just be a fetch, all other course actions go through the user object. We can just fetch every time the course catalog
+// is visited via a useEffect call to handle new, updated, or deleted courses. **
 
 export const fetchCourses = createAsyncThunk("courses/fetchCourses", async () => {
-  const response = await fetch("/api/courses");
+  const response = await fetch("/courses");
   const data = await response.json();
   return data;
 });
 
 export const addCourse = createAsyncThunk("courses/addCourse", async (formData) => {
-  const r = await fetch("/api/courses", {
+  const r = await fetch("/courses", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      name: formData.name,
-      address: formData.address
+      title: formData.title,
+      content: formData.content
+      // TODO: creating user's id - this one may just go to SessionsController
     })
   });
   const data = await r.json();
