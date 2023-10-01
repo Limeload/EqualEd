@@ -3,7 +3,9 @@ class EnrollmentsController < ApplicationController
     def create
         enrollment = Enrollment.create(enrollment_params)
         if enrollment.valid?
-            render json: enrollment, status: :created
+            #changed to return the enrolled course to push into the user's collection in state
+            course = Course.find_by(id: enrollment.course_id)
+            render json: course, status: :created
         else
             render json: { errors: enrollment.errors.full_messages }, status: :unprocessable_entity
         end

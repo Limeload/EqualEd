@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch()
-  const courses = useSelector(state => state.courses.entities)
 
   useEffect(() => {
     dispatch(fetchUser())

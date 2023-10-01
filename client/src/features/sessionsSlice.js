@@ -39,6 +39,22 @@ export const signUpPost = createAsyncThunk("sessions/signUpPost", async (form) =
 
 // TODO: add and remove course actions for enrollment
 
+export const addEnrollment = createAsyncThunk("sessions/addEnrollment", async (id, { getState }) => {
+  const state = getState();
+  const r = await fetch("/api/enrollments", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user_id: state.sessions.currentUser.id,
+      course_id: id,
+      enrolled: true,
+      created: false
+    })
+  })
+  const enroll = await r.json();
+  return enroll;
+})
+
 export const editCourse = createAsyncThunk("sessions/editCourse", async ({ id, form }) => {
   const r = await fetch(`/api/courses/${id}`, {
     method: "PATCH",
@@ -122,6 +138,20 @@ const sessionsSlice = createSlice({
         else {
           state.currentUser = action.payload
           state.loggedIn = true
+          state.status = "idle"
+          state.errors = []
+        }
+      })
+      .addCase(addEnrollment.pending, (state) => {
+        state.status = "loading"
+      })
+      .addCase(addEnrollment.fulfilled, (state, action) => {
+        if (action.payload.error) {
+          state.errors = action.payload.error
+          state.status = "idle"
+        }
+        else {
+          state.currentUser.courses.enrolled.push(action.payload)
           state.status = "idle"
           state.errors = []
         }
