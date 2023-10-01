@@ -22,6 +22,6 @@ class EnrollmentsController < ApplicationController
     private
     
     def enrollment_params
-        params.permit(:user_id, :course_id, :enrolled)
+        params.permit(:user_id, :course_id, :enrolled, :created)
     end
 end
