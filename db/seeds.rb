@@ -18,6 +18,6 @@ puts 'seeding enrollments'
 
 30.times do Enrollment.create(course_id: rand(1..50), user_id: rand(1..15), enrolled: true, created: false) end
 
-30.times do Enrollment.create(course_id: rand(1..50), user_id: rand(1..15), enrolled: false, created: true) end
+30.times do Enrollment.create(course_id: rand(1..50), user_id: rand(11..15), enrolled: false, created: true) end
 
 puts 'seeded'
