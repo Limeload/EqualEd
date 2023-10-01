@@ -21,9 +21,9 @@ const Login = () => {
       <form onSubmit={handleSubmit} >
         <h3>Login</h3>
         <label>
-          <p>Username/Email</p>
+          <p>Username</p>
           <input
-            placeholder="Username/email"
+            placeholder="Username"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
