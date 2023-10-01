@@ -14,7 +14,7 @@ const NavBar = () => {
   const user = useSelector(state => state.sessions.currentUser)
 
   const handleClick = () => {
-    fetch('/logout', {
+    fetch('/api/logout', {
       method: "DELETE"
     })
     dispatch(logOut())
@@ -72,7 +72,7 @@ const NavBar = () => {
         Instructor Signup
       </NavLink>
       <NavLink
-        to="/me"
+        to="/profile"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "pending" : ""
         }
