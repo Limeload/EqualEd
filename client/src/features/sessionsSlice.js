@@ -9,7 +9,7 @@ export const fetchUser = createAsyncThunk("sessions/fetchUser", async () => {
 });
 
 export const logInPost = createAsyncThunk("sessions/logInPost", async (form) => {
-  const r = await fetch("/login", {
+  const r = await fetch("api/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -22,7 +22,7 @@ export const logInPost = createAsyncThunk("sessions/logInPost", async (form) => 
 })
 
 export const signUpPost = createAsyncThunk("sessions/signUpPost", async (form) => {
-  const r = await fetch('/signup', {
+  const r = await fetch('/api/signup', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -40,7 +40,7 @@ export const signUpPost = createAsyncThunk("sessions/signUpPost", async (form) =
 // TODO: add and remove course actions for enrollment
 
 export const editCourse = createAsyncThunk("sessions/editCourse", async ({ id, form }) => {
-  const r = await fetch(`/courses/${id}`, {
+  const r = await fetch(`/api/courses/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(form)
@@ -50,7 +50,7 @@ export const editCourse = createAsyncThunk("sessions/editCourse", async ({ id, f
 })
 
 export const deleteCourse = createAsyncThunk("sessions/deleteCourse", async (id) => {
-  const r = await fetch(`/courses/${id}`, { method: "DELETE" });
+  const r = await fetch(`/api/courses/${id}`, { method: "DELETE" });
   return r.data;
 })
 
