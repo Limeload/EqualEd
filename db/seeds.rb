@@ -1,38 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts 'Seeding students'
+10.times do User.create(username: Faker::GreekPhilosophers.name, email: Faker::Internet.email, instructor: false, password: hotdogs123) end
 
-puts 'Seeding users'
-user1 = User.create(
-  username: 'user1',
-  email: 'user1@example.com',
-  user_type: 'Student',
-  password: 'password123',
-  password_confirmation: 'password123'
-)
-
-user2 = User.create(
-  username: 'user2',
-  email: 'user2@example.com',
-  user_type: 'Educator',
-  password: 'password123',
-  password_confirmation: 'password123'
-)
+puts 'Seeding Teachers'
+5.times do User.create(username: Faker::GreekPhilosophers.name, email: Faker::Internet.email, instructor: true, password: hotdogs123) end
 
 puts 'seeding courses'
 
-course1 = Course.create(
-  title: 'Introduction to Algebra',
-  content: 'This course provides a comprehensive introduction to algebra concepts.'
-)
+50.times do Course.create(title: Faker::Educator.course_name, content: Faker::Books::Lovecraft.paragraph_by_chars(characters: 500)) end
 
-course2 = Course.create(
-  title: 'History of Ancient Civilizations',
-  content: 'Explore the history of ancient civilizations from around the world.'
-)
+puts 'seeding enrollments'
 
+30.times do Enrollment.create(course_id: rand(1..50), user_id: rand(1..15), enrolled: true, created: false) end
 
+30.times do Enrollment.create(course_id: rand(1..50), user_id: rand(1..15), enrolled: false, created: true) end
+
+puts 'seeded'
