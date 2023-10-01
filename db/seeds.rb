@@ -1,8 +1,14 @@
+puts "Clearing database..."
+
+Enrollment.destroy_all
+User.destroy_all
+Course.destroy_all
+
 puts 'Seeding students'
-10.times do User.create(username: Faker::GreekPhilosophers.name, email: Faker::Internet.email, instructor: false, password: hotdogs123) end
+10.times do User.create(username: Faker::GreekPhilosophers.name, email: Faker::Internet.email, instructor: false, password: "hotdogs123") end
 
 puts 'Seeding Teachers'
-5.times do User.create(username: Faker::GreekPhilosophers.name, email: Faker::Internet.email, instructor: true, password: hotdogs123) end
+5.times do User.create(username: Faker::GreekPhilosophers.name, email: Faker::Internet.email, instructor: true, password: "hotdogs123") end
 
 puts 'seeding courses'
 
