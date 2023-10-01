@@ -3,4 +3,8 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :courses
   has_many :enrollments
+
+  def username
+    object.username.capitalize
+  end
 end
