@@ -6,8 +6,8 @@ const CourseCard = ({ course }) => {
   return (
     <div onClick={() => navigate(`/courses/${course.id}`)}>
       <h3>{course.title}</h3>
-      {/* shorten the descriptions with css - just want to make the cards uniform and relatively square */}
-      <p>{course.description}</p>
+      {/* shorten the content with css - just want to make the cards uniform and relatively square */}
+      <p>{course.content}</p>
     </div>
   )
 }

@@ -4,12 +4,14 @@ import { useParams } from 'react-router-dom'
 
 const Course = () => {
   let { courseId } = useParams()
-  const course = useSelector(state => state.courses.entities.find(c => c.id === courseId))
+  const courses = useSelector(state => state.courses.entities)
+  const course = courses.find(c => c.id === parseInt(courseId))
+  if (!course) return <h1>Loading...</h1>
   return (
     <div>
       <h2>{course.title}</h2>
       <p>{course.content}</p>
-      {/* enroll button that dispatches enrollCourse action */}
+      { /* enroll button that dispatches enrollCourse action */}
     </div>
   )
 }
