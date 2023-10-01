@@ -2,8 +2,6 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
 
  before_action :authorize
- skip_before_action :verify_authenticity_token
-
 
  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
  rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid
@@ -19,8 +17,7 @@ class ApplicationController < ActionController::API
 private
 
 def authorize
-  @current_user ||= User.find_by(id: cookies.signed[:user_id]) if cookies.signed[:user_id]
-  render json: { errors: ["Not authorized, please login"] }, status: :unauthorized unless @current_user
+  return render json: { error: "Not Authorized" }, status: :unauthorized unless session.include? :user_id
 end
 
 
