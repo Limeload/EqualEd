@@ -11,13 +11,13 @@ class ApplicationController < ActionController::API
  end
 
  def render_record_invalid invalid
-   render json: {errors: invalid.record.errors}, status: :unprocessable_entity
+   render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
  end
 
 private
 
 def authorize
-  return render json: { error: "Not Authorized" }, status: :unauthorized unless session.include? :user_id
+  return render json: { error: ["Not Authorized"] }, status: :unauthorized unless session.include? :user_id
 end
 
 

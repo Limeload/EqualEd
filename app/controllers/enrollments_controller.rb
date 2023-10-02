@@ -7,7 +7,7 @@ class EnrollmentsController < ApplicationController
             course = Course.find_by(id: enrollment.course_id)
             render json: course, status: :created
         else
-            render json: { errors: enrollment.errors.full_messages }, status: :unprocessable_entity
+            render json: { error: enrollment.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
@@ -17,7 +17,7 @@ class EnrollmentsController < ApplicationController
         if enrollment.destroy
             head :no_content
         else
-            render json: { errors: enrollment.errors.full_messages }, status: :unprocessable_entity
+            render json: { error: enrollment.errors.full_messages }, status: :unprocessable_entity
         end
     end
 

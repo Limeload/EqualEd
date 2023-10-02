@@ -122,6 +122,26 @@ button:hover {
   background-color: white;
 }
 
+#errors {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.loading-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #131223;
+  opacity: .8;
+  z-index: 999;
+}
+
 #footer {
   position: absolute;
   bottom: 0;
