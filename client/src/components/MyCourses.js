@@ -10,15 +10,19 @@ const MyCourses = () => {
   const displayEnrolled = user.courses.enrolled.map(c => <CourseCard key={c.id} course={c} />)
   const displayCreated = user.courses.created.map(c => <CourseCard key={c.id} course={c} />)
   return (
-    <div>
-      <div className="courseGrid">
+    <div id="my-courses">
+      <div>
         <h2>Enrolled Courses</h2>
-        {displayEnrolled}
+        <div className="course-grid">
+          {displayEnrolled}
+        </div>
       </div>
       {user.instructor ?
-        <div className="courseGrid">
+        <div>
           <h2>Owned Courses</h2>
-          {displayCreated}
+          <div className="course-grid">
+            {displayCreated}
+          </div>
         </div> :
         null
       }

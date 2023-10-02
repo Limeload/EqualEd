@@ -2,7 +2,9 @@ import React from 'react'
 
 const EditProfile = () => {
   return (
-    <div>EditProfile</div>
+    <div>
+      Coming soon, I'm lazy.
+    </div>
   )
 }
 

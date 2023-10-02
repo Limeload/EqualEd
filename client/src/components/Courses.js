@@ -12,7 +12,10 @@ const Courses = () => {
   }
   return (
     <div>
-      {displayCourses}
+      <h2>Here is a list of all available EqualEd courses. Click on one for more info!</h2>
+      <div className="course-grid">
+        {displayCourses}
+      </div>
     </div>
   )
 }

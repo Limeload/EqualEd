@@ -84,30 +84,18 @@ const NavBar = () => {
       >
         Course Catalog
       </NavLink>
-      {
-        user.instructor ?
-          <NavLink
-            to="/courses/new"
-            className={({ isActive, isPending }) =>
-              isPending ? "pending" : isActive ? "active" : ""
-            }
-          >
-            Create Course
-          </NavLink> :
-          null
-      }
       <NavLink
         to="/profile"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "pending" : ""
+          isPending ? "pending" : isActive ? "active" : ""
         }
       >
-        {user.username || "My Profile"}
+        {user.username || "Profile"}
       </NavLink>
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "pending" : ""
+          isPending ? "pending" : isActive ? "active" : ""
         }
         onClick={handleClick}
       >
