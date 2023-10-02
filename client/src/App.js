@@ -24,22 +24,22 @@ function App() {
   const errors = useSelector(state => state.sessions.errors.concat(state.courses.errors))
   const loggedIn = useSelector(state => state.sessions.loggedIn)
   const newCourse = useSelector(state => state.courses.newCourse)
-
+  const errorCheck = errors[0] ? true : false
   const [showErrors, setShowErrors] = useState(false)
 
   useEffect(() => {
     dispatch(fetchUser())
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
     dispatch(fetchCourses())
   }, [])
 
   useEffect(() => {
-    if (errors[0]) {
+    if (errorCheck) {
       setShowErrors(true)
     }
-  }, [errors[0]])
+  }, [errorCheck])
 
   useEffect(() => {
     if (newCourse) {
@@ -79,12 +79,14 @@ function App() {
       }
       {
         showErrors ?
-          <div id="errors">
-            <h3>Your request could not be completed. Here's why:</h3>
-            <ul>
-              {displayErrors}
-            </ul>
-            <button onClick={handleClick}>Got it!</button>
+          <div className="errors-wrapper">
+            <div className="errors">
+              <h3>Your request could not be completed. Here's why:</h3>
+              <ul>
+                {displayErrors}
+              </ul>
+              <button onClick={handleClick}>Got it!</button>
+            </div>
           </div> :
           null
       }
