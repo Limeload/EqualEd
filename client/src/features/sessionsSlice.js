@@ -55,6 +55,11 @@ export const addEnrollment = createAsyncThunk("sessions/addEnrollment", async (i
   return enroll;
 })
 
+export const removeEnrollment = createAsyncThunk("sessions/removeEnrollment", async (id) => {
+  const r = await fetch(`/api/enrollments/${id}`, { method: "DELETE" });
+  return r.data;
+})
+
 export const editCourse = createAsyncThunk("sessions/editCourse", async ({ id, form }) => {
   const r = await fetch(`/api/courses/${id}`, {
     method: "PATCH",
@@ -156,6 +161,13 @@ const sessionsSlice = createSlice({
           state.errors = []
         }
       })
+      .addCase(removeEnrollment.pending, (state) => {
+        state.status = "loading"
+      })
+      .addCase(removeEnrollment.fulfilled, (state, action) => {
+        state.currentUser.courses.enrolled = state.currentUser.courses.enrolled.filter(c => c.id !== action.meta.arg)
+        state.status = "idle"
+      })
       .addCase(editCourse.pending, (state) => {
         state.status = "loading"
       })
@@ -176,8 +188,7 @@ const sessionsSlice = createSlice({
         state.status = "loading"
       })
       .addCase(deleteCourse.fulfilled, (state, action) => {
-        // TODO: Change reviews to instructor courses array
-        // state.currentUser.reviews = state.currentUser.reviews.filter(r => r.id !== action.meta.arg)
+        state.currentUser.courses.enrolled = state.currentUser.courses.enrolled.filter(r => r.id !== action.meta.arg)
         state.status = "idle"
       })
   }
