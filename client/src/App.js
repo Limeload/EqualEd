@@ -49,12 +49,6 @@ function App() {
     }
   }, [newCourse])
 
-  useEffect(() => {
-    if (loggedIn) {
-      navigate('/profile')
-    }
-  }, [loggedIn])
-
   const displayErrors = errors.map((e, i) => <li key={i} >{e}</li>)
   const handleClick = () => {
     dispatch(resetSessErrors())

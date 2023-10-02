@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { logInPost } from '../features/sessionsSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
+  const dispatch = useDispatch()
+  const loggedIn = useSelector(state => state.sessions.loggedIn)
+
+  const navigate = useNavigate()
+
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/profile")
+    }
+  }, [loggedIn])
 
   const handleSubmit = (e) => {
     e.preventDefault()
