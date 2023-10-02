@@ -3,7 +3,9 @@ class EnrollmentsController < ApplicationController
     def create
         enrollment = Enrollment.create(enrollment_params)
         if enrollment.valid?
-            render json: enrollment, status: :created
+            #changed to return the enrolled course to push into the user's collection in state
+            course = Course.find_by(id: enrollment.course_id)
+            render json: course, status: :created
         else
             render json: { errors: enrollment.errors.full_messages }, status: :unprocessable_entity
         end
@@ -11,9 +13,9 @@ class EnrollmentsController < ApplicationController
 
     def destroy
         user = User.find_by(id: session[:user_id])
-        enrollment = user.enrollments.find_by(id: params[:id])
+        enrollment = user.enrollments.find_by(course_id: params[:id])
         if enrollment.destroy
-            render json: enrollment
+            head :no_content
         else
             render json: { errors: enrollment.errors.full_messages }, status: :unprocessable_entity
         end
@@ -22,6 +24,6 @@ class EnrollmentsController < ApplicationController
     private
     
     def enrollment_params
-        params.permit(:user_id, :course_id, :enrolled)
+        params.permit(:user_id, :course_id, :enrolled, :created)
     end
 end

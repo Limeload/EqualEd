@@ -23,28 +23,14 @@ class CoursesController < ApplicationController
 
   def update
     course = Course.find(params[:id])
-
-    if course.update(course_params)
-      render json: course, status: :ok
-    else
-      render json: { errors: course.errors.full_messages }, status: :unprocessable_entity
-    end
+    course.update!(course_params)
+    render json: course, status: :ok
   end
 
   def destroy
     course = Course.find(params[:id])
     course.destroy
     head :no_content
-  end
-
-  def patch
-    course = Course.find(params[:id])
-
-    if course.update(course_params)
-      render json: course, status: :ok
-    else
-      render json: { errors: course.errors.full_messages }, status: :unprocessable_entity
-    end
   end
 
   private

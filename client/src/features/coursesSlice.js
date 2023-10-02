@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // TODO: update these accordingly when backend is finished
+// ** This one may just be a fetch, all other course actions go through the user object. We can just fetch every time the course catalog
+// is visited via a useEffect call to handle new, updated, or deleted courses. **
 
 export const fetchCourses = createAsyncThunk("courses/fetchCourses", async () => {
   const response = await fetch("/api/courses");
@@ -8,13 +10,13 @@ export const fetchCourses = createAsyncThunk("courses/fetchCourses", async () =>
   return data;
 });
 
-export const addCourse = createAsyncThunk("courses/addCourse", async (formData) => {
+export const addCourse = createAsyncThunk("courses/addCourse", async (form) => {
   const r = await fetch("/api/courses", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      name: formData.name,
-      address: formData.address
+      title: form.title,
+      content: form.content
     })
   });
   const data = await r.json();
@@ -26,8 +28,8 @@ const coursesSlice = createSlice({
   initialState: {
     entities: [], // array of courses
     status: "idle", // loading state
-    errors: [],
-    selectedCourse: null // id of course in review
+    newCourse: false,
+    errors: []
   },
   reducers: {
     courseAdded(state, action) {
@@ -35,13 +37,16 @@ const coursesSlice = createSlice({
     },
     courseUpdated(state, action) {
       const course = state.entities.find((r) => r.id === action.payload.id);
-      course.name = action.payload.name;
-      course.address = action.payload.address;
+      course.title = action.payload.title;
+      course.content = action.payload.content;
     },
-    setCourse(state, action) {
-      state.selectedCourse = parseInt(action.payload) // dispatched with the id of clicked course or null after review submission
+    courseDeleted(state, action) {
+      state.entities = state.entities.filter(c => c.id !== action.payload.id)
     },
-    resetRestErrors(state) {
+    resetNew(state) {
+      state.newCourse = false
+    },
+    resetCourseErrors(state) {
       state.errors = []
     }
   },
@@ -64,7 +69,7 @@ const coursesSlice = createSlice({
         }
         else {
           state.entities.push(action.payload);
-          state.selectedCourse = action.payload.id
+          state.newCourse = action.payload.id
           state.errors = []
           state.status = "idle";
         }
@@ -72,6 +77,6 @@ const coursesSlice = createSlice({
   }
 })
 
-export const { courseAdded, courseUpdated, setCourse, resetRestErrors } = coursesSlice.actions;
+export const { courseAdded, courseUpdated, courseDeleted, resetNew, resetCourseErrors } = coursesSlice.actions;
 
 export default coursesSlice.reducer;

@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 2023_10_01_013555) do
     t.integer "course_id"
     t.integer "user_id"
     t.boolean "enrolled"
+    t.boolean "created"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "created"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 2023_10_01_013555) do
     t.string "email"
     t.string "password_digest"
     t.string "user_type"
+    t.boolean "instructor"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "instructor"
   end
 
 end

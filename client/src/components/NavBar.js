@@ -1,11 +1,25 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { logOut } from '../features/sessionsSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 // TODO: User Profile NavLink?
 // TODO: Only render Create Course link if user is instructor
-// TODO: Different styling and position for login links; they shouldn't be a tab per se
+// TODO: Render user profile & logout link instead of login/signup when there is a user
+// TODO: Different styling and position for login, signup, logout links; they shouldn't be a tab per se
 
 const NavBar = () => {
+
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.sessions.currentUser)
+
+  const handleClick = () => {
+    fetch('/api/logout', {
+      method: "DELETE"
+    })
+    dispatch(logOut())
+  }
+
   return (
     <nav id="navbar">
       <NavLink
@@ -34,20 +48,45 @@ const NavBar = () => {
         Create Course
       </NavLink>
       <NavLink
-        to="/login/student"
+        to="/login"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "active" : ""
         }
       >
-        Student Login
+        Login
       </NavLink>
       <NavLink
-        to="/login/instructor"
+        to="/signup/student"
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "active" : ""
         }
       >
-        Instructor Login
+        Student Signup
+      </NavLink>
+      <NavLink
+        to="/signup/instructor"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active" : ""
+        }
+      >
+        Instructor Signup
+      </NavLink>
+      <NavLink
+        to="/profile"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "pending" : ""
+        }
+      >
+        {user.username || "My Profile"}
+      </NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "pending" : ""
+        }
+        onClick={handleClick}
+      >
+        Log Out
       </NavLink>
     </nav>
   )
