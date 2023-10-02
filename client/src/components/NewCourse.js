@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addCourse } from '../features/coursesSlice'
 
@@ -10,7 +9,6 @@ const NewCourse = () => {
     content: ""
   })
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
@@ -24,7 +22,6 @@ const NewCourse = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(addCourse(form))
-    navigate("/profile")
   }
 
   return (

@@ -10,7 +10,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Accessibility from './components/Accessibility';
 import { ColorRing } from 'react-loader-spinner'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { fetchUser, courseCreated, resetSessErrors } from './features/sessionsSlice';
 import { fetchCourses, resetNew, resetCourseErrors } from './features/coursesSlice';
@@ -18,9 +18,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const loading = useSelector(state => state.sessions.status === "loading" ? true : false)
   const errors = useSelector(state => state.sessions.errors.concat(state.courses.errors))
+  const loggedIn = useSelector(state => state.sessions.loggedIn)
   const newCourse = useSelector(state => state.courses.newCourse)
 
   const [showErrors, setShowErrors] = useState(false)
@@ -43,8 +45,15 @@ function App() {
     if (newCourse) {
       dispatch(courseCreated(newCourse))
       dispatch(resetNew())
+      navigate('/profile')
     }
   }, [newCourse])
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/profile')
+    }
+  }, [loggedIn])
 
   const displayErrors = errors.map((e, i) => <li key={i} >{e}</li>)
   const handleClick = () => {

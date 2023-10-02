@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { logInPost } from '../features/sessionsSlice'
-import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(logInPost({ username, password }))
-    navigate("/")
   }
 
   return (
