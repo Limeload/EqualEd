@@ -12,25 +12,36 @@ class CoursesController < ApplicationController
   end
 
   def create
-    course = Course.new(course_params)
-
-    if course.save
-      render json: course, status: :created
+    if !current_user.instructor
+     render json: { error: ["You are not authorized to perform this action."] }, status: :unauthorized
     else
-      render json: { error: course.errors.full_messages }, status: :unprocessable_entity
+      course = Course.new(course_params)
+      if course.save
+        render json: course, status: :created
+      else
+        render json: { error: course.errors.full_messages }, status: :unprocessable_entity
+      end
     end
   end
-
+  # TODO: update and destroy should also check if the user has an enrollment with the course where created: true
   def update
-    course = Course.find(params[:id])
-    course.update!(course_params)
-    render json: course, status: :ok
+    if !current_user.instructor
+      render json: { error: ["You are not authorized to perform this action."] }, status: :unauthorized
+     else
+      course = Course.find(params[:id])
+      course.update!(course_params)
+      render json: course, status: :ok
+     end
   end
 
   def destroy
-    course = Course.find(params[:id])
-    course.destroy
-    head :no_content
+    if !current_user.instructor
+      render json: { error: ["You are not authorized to perform this action."] }, status: :unauthorized
+     else
+      course = Course.find(params[:id])
+      course.destroy
+      head :no_content
+     end
   end
 
   private
