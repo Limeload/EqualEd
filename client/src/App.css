@@ -2,25 +2,31 @@
   box-sizing: border-box;
 }
 
-button:hover {
+button {
+  background-color: #282c34;
+  border-radius: 100px;
+  box-shadow: rgba(40, 44, 52, 0.2) 0 -25px 18px -14px inset, rgba(40, 44, 52, 0.2) 0 1px 2px, rgba(40, 44, 52, 0.2) 0 2px 4px, rgba(40, 44, 52, 0.2) 0 4px 8px, rgba(40, 44, 52, 0.2) 0 8px 16px, rgba(40, 44, 52, 0.2) 0 16px 32px;
+  color: white;
   cursor: pointer;
-  opacity: .75;
+  display: inline-block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 7px 15px;
+  text-align: center;
+  transition: all 250ms;
+  margin: 1%;
+  border: 0;
+  font-size: 12px;
+}
+
+button:hover {
+  color: #61dafb;
+  box-shadow: rgba(97, 218, 251, 0.35) 0 -25px 18px -14px inset, rgba(97, 218, 251, 0.35) 0 1px 2px, rgba(97, 218, 251, 0.35) 0 2px 4px, rgba(97, 218, 251, 0.35) 0 4px 8px, rgba(97, 218, 251, 0.35) 0 8px 16px, rgba(97, 218, 251, 0.35) 0 16px 32px;
+  transform: scale(1.05);
 }
 
 .App {
   text-align: center;
-  margin-top: 6%;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  margin-top: 7%;
 }
 
 .App-header {
@@ -84,6 +90,7 @@ button:hover {
   height: 75px;
   width: 75px;
   font-size: 40px;
+  background-color: #61dafb;
   border: none;
   border-radius: 50%;
   bottom: 5%;
@@ -102,7 +109,9 @@ button:hover {
   background-color: #61dafb;
   border: none;
   border-radius: 5px;
+  box-shadow: none;
   position: absolute;
+  padding: 0;
   top: 0;
   right: 0;
 }
@@ -118,6 +127,7 @@ button:hover {
 
 .feature-btn {
   border: 1px solid #282c34;
+  color: black;
   border-radius: 5px;
   background-color: white;
 }
@@ -126,12 +136,11 @@ button:hover {
   width: 100%;
   height: 100%;
   position: fixed;
-  background-color: #131223;
-  opacity: .8;
+  background-color: #13122380;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 999;
+  z-index: 998;
 }
 
 .errors {
@@ -139,7 +148,6 @@ button:hover {
   background-color: white;
   border: 1px solid #131223;
   padding: 2%;
-  opacity: 1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
