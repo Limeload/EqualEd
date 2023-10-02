@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 
 const MyCourses = () => {
   const user = useSelector(state => state.sessions.currentUser)
+  const loggedIn = useSelector(state => state.sessions.loggedIn)
+  if (!loggedIn) return <h1>Loading...</h1>
 
   const displayEnrolled = user.courses.enrolled.map(c => <CourseCard key={c.id} course={c} />)
   const displayCreated = user.courses.created.map(c => <CourseCard key={c.id} course={c} />)

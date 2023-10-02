@@ -10,13 +10,13 @@ export const fetchCourses = createAsyncThunk("courses/fetchCourses", async () =>
   return data;
 });
 
-export const addCourse = createAsyncThunk("courses/addCourse", async (formData) => {
-  const r = await fetch("/courses", {
+export const addCourse = createAsyncThunk("courses/addCourse", async (form) => {
+  const r = await fetch("/api/courses", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      title: formData.title,
-      content: formData.content
+      title: form.title,
+      content: form.content
     })
   });
   const data = await r.json();
@@ -28,6 +28,7 @@ const coursesSlice = createSlice({
   initialState: {
     entities: [], // array of courses
     status: "idle", // loading state
+    newCourse: false,
     errors: []
   },
   reducers: {
@@ -38,6 +39,12 @@ const coursesSlice = createSlice({
       const course = state.entities.find((r) => r.id === action.payload.id);
       course.title = action.payload.title;
       course.content = action.payload.content;
+    },
+    courseDeleted(state, action) {
+      state.entities = state.entities.filter(c => c.id !== action.payload.id)
+    },
+    resetNew(state) {
+      state.newCourse = false
     },
     resetCourseErrors(state) {
       state.errors = []
@@ -62,7 +69,7 @@ const coursesSlice = createSlice({
         }
         else {
           state.entities.push(action.payload);
-          state.selectedCourse = action.payload.id
+          state.newCourse = action.payload.id
           state.errors = []
           state.status = "idle";
         }
@@ -70,6 +77,6 @@ const coursesSlice = createSlice({
   }
 })
 
-export const { courseAdded, courseUpdated, setCourse, resetCourseErrors } = coursesSlice.actions;
+export const { courseAdded, courseUpdated, courseDeleted, resetNew, resetCourseErrors } = coursesSlice.actions;
 
 export default coursesSlice.reducer;

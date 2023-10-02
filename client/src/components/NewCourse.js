@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-// TODO: import addCourse action to dispatch in handleSubmit
+import { addCourse } from '../features/coursesSlice'
 
 const NewCourse = () => {
 
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     title: "",
     content: ""
-    // TODO: incorporate instructor id
   })
 
   const navigate = useNavigate()
@@ -16,16 +15,16 @@ const NewCourse = () => {
 
   const handleChange = (e) => {
     const value = e.target.value
-    setFormData({
-      ...formData,
+    setForm({
+      ...form,
       [e.target.name]: value
     })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // dispatch(addCourse(formData))
-    navigate("/me")
+    dispatch(addCourse(form))
+    navigate("/profile")
   }
 
   return (
@@ -37,7 +36,7 @@ const NewCourse = () => {
             name="title"
             onChange={handleChange}
             placeholder='Title of your course'
-            value={formData.title}
+            value={form.title}
           />
         </label>
         <br />
@@ -47,7 +46,7 @@ const NewCourse = () => {
             name="content"
             onChange={handleChange}
             placeholder='Paste the content of your course here!'
-            value={formData.content}
+            value={form.content}
           />
         </label>
         <br />

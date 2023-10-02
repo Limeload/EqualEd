@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   scope '/api' do
   resources :enrollments, only: [:create, :destroy]
-  resources :courses, only: [:create, :update, :destroy, :patch, :index]
+  resources :courses, only: [:create, :update, :destroy, :index]
   resources :users, only: [:index]
 
   post "/signup", to: "users#create"

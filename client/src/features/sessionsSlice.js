@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// TODO: update these accordingly when backend is finished
-
 export const fetchUser = createAsyncThunk("sessions/fetchUser", async () => {
   const response = await fetch("/api/me");
   const data = await response.json();
@@ -58,6 +56,22 @@ export const addEnrollment = createAsyncThunk("sessions/addEnrollment", async (i
 export const removeEnrollment = createAsyncThunk("sessions/removeEnrollment", async (id) => {
   const r = await fetch(`/api/enrollments/${id}`, { method: "DELETE" });
   return r.data;
+})
+
+export const courseCreated = createAsyncThunk("sessions/courseCreated", async (id, { getState }) => {
+  const state = getState();
+  const r = await fetch("/api/enrollments", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user_id: state.sessions.currentUser.id,
+      course_id: id,
+      enrolled: false,
+      created: true
+    })
+  })
+  const enroll = await r.json();
+  return enroll;
 })
 
 export const editCourse = createAsyncThunk("sessions/editCourse", async ({ id, form }) => {
@@ -168,6 +182,20 @@ const sessionsSlice = createSlice({
         state.currentUser.courses.enrolled = state.currentUser.courses.enrolled.filter(c => c.id !== action.meta.arg)
         state.status = "idle"
       })
+      .addCase(courseCreated.pending, (state) => {
+        state.status = "loading"
+      })
+      .addCase(courseCreated.fulfilled, (state, action) => {
+        if (action.payload.error) {
+          state.errors = action.payload.error
+          state.status = "idle"
+        }
+        else {
+          state.currentUser.courses.created.push(action.payload)
+          state.status = "idle"
+          state.errors = []
+        }
+      })
       .addCase(editCourse.pending, (state) => {
         state.status = "loading"
       })
@@ -178,7 +206,7 @@ const sessionsSlice = createSlice({
         }
         else {
           // TODO: change to update edited instructor course
-          // state.currentUser.reviews = state.currentUser.reviews.map(r => r.id === action.payload.id ? action.payload : r)
+          state.currentUser.courses.created = state.currentUser.courses.created.map(c => c.id === action.payload.id ? action.payload : c)
           state.edit = true
           state.status = "idle"
           state.errors = []
@@ -188,7 +216,7 @@ const sessionsSlice = createSlice({
         state.status = "loading"
       })
       .addCase(deleteCourse.fulfilled, (state, action) => {
-        state.currentUser.courses.enrolled = state.currentUser.courses.enrolled.filter(r => r.id !== action.meta.arg)
+        state.currentUser.courses.created = state.currentUser.courses.created.filter(r => r.id !== action.meta.arg)
         state.status = "idle"
       })
   }

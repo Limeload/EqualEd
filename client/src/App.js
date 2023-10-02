@@ -11,12 +11,14 @@ import Footer from './components/Footer';
 import Accessibility from './components/Accessibility';
 import { Route, Routes } from 'react-router-dom'
 import { useEffect } from 'react';
-import { fetchUser } from './features/sessionsSlice';
-import { fetchCourses } from './features/coursesSlice';
+import { fetchUser, courseCreated } from './features/sessionsSlice';
+import { fetchCourses, resetNew } from './features/coursesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch()
+
+  const newCourse = useSelector(state => state.courses.newCourse)
 
   useEffect(() => {
     dispatch(fetchUser())
@@ -25,6 +27,13 @@ function App() {
   useEffect(() => {
     dispatch(fetchCourses())
   }, [])
+
+  useEffect(() => {
+    if (newCourse) {
+      dispatch(courseCreated(newCourse))
+      dispatch(resetNew())
+    }
+  }, [newCourse])
 
   return (
     <div className="App">
