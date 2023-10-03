@@ -79,18 +79,22 @@ button:hover {
 
 #widget {
   position: fixed;
+  background-color: white;
   bottom: 5%;
   right: 5%;
   height: 40%;
-  border: 1px solid #282c34;
+  border: 1px solid #61dafb;
+  border-top: none;
   border-radius: 5px;
+  box-shadow: 1px 1px #a58cff;
 }
 
 .widget-btn {
   position: fixed;
-  height: 75px;
-  width: 75px;
-  font-size: 40px;
+  text-align: center;
+  height: 70px;
+  width: 70px;
+  font-size: 2.5em;
   background-color: #a58cff;
   border: none;
   border-radius: 50%;
@@ -100,6 +104,7 @@ button:hover {
 
 .widget-header {
   background-color: #282c34;
+  border-radius: 5px 5px 0 0;
 }
 
 .widget-header h2 {
