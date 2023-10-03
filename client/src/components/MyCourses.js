@@ -13,16 +13,24 @@ const MyCourses = () => {
     <div id="my-courses">
       <div>
         <h2>Enrolled Courses</h2>
-        <div className="course-grid">
-          {displayEnrolled}
-        </div>
+        {
+          !user.courses.enrolled[0] ?
+            <p>You are not currently enrolled in any courses. Check out our Course Catalog!</p> :
+            <div className="course-grid">
+              {displayEnrolled}
+            </div>
+        }
       </div>
       {user.instructor ?
         <div>
-          <h2>Owned Courses</h2>
-          <div className="course-grid">
-            {displayCreated}
-          </div>
+          <h2>Created Courses</h2>
+          {
+            !user.courses.created[0] ?
+              <p>You haven't created any courses yet. Click on 'Add Course' to get started!</p> :
+              <div className="course-grid">
+                {displayCreated}
+              </div>
+          }
         </div> :
         null
       }
