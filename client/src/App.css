@@ -114,13 +114,19 @@ button:hover {
 
 .close-btn {
   background-color: #282c34;
+  color: #a58cff;
   border: none;
   border-radius: 5px;
-  box-shadow: none;
+  font-size: 1.2em;
   position: absolute;
   padding: 0;
   top: 0;
   right: 0;
+}
+
+.close-btn:hover {
+  color: #61dafb;
+  box-shadow: none;
 }
 
 .btn-grid {
