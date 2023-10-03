@@ -191,7 +191,7 @@ button:hover {
   transform: translateY(-1%);
 }
 
-.course-card h3 {
+.course-card h4 {
   background-color: #282c34;
   border-radius: 5px 5px 0 0;
   color: white;
@@ -201,7 +201,7 @@ button:hover {
 
 .card-body {
   padding: 2%;
-  height: min(95%, 20vh);
+  max-height: 80%;
   overflow: auto;
 }
 

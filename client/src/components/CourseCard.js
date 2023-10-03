@@ -8,7 +8,7 @@ const CourseCard = ({ course }) => {
       className="course-card"
       onClick={() => navigate(`/courses/${course.id}`)}
     >
-      <h3>{course.title}</h3>
+      <h4>{course.title}</h4>
       {/* shorten the content with css - just want to make the cards uniform and relatively square */}
       <div className="card-body">{course.content}</div>
     </div>
