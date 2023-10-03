@@ -38,6 +38,7 @@ button:hover {
   justify-content: space-around;
   margin: 0 auto;
   background-color: white;
+  z-index: 998;
 }
 
 .header-img {
@@ -52,7 +53,6 @@ button:hover {
   justify-content: space-around;
   align-items: flex-end;
   padding: 1%;
-  z-index: 998;
 }
 
 #navbar a {
@@ -201,6 +201,7 @@ button:hover {
 .course-card:hover {
   cursor: pointer;
   transform: translateY(-1%);
+  z-index: 0;
 }
 
 .course-card h4 {
