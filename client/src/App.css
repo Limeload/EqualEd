@@ -171,7 +171,9 @@ button:hover {
   display: flex;
   flex-flow: row wrap;
   margin: 0 10%;
+  padding-top: 2px;
   justify-content: space-evenly;
+  overflow: auto;
 }
 
 .course-card {
@@ -217,14 +219,15 @@ button:hover {
 }
 
 #dashboard {
-  display: flex;
-  flex-flow: row wrap;
-  margin: 0 auto;
+  display: grid;
+  height: 80vh;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  margin: auto;
   width: 90%;
 }
 
 #profile {
-  width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -233,8 +236,7 @@ button:hover {
 #my-courses {
   margin: 0 auto;
   display: flex;
-  flex-flow: row wrap;
-  width: 75%;
+  flex-flow: column wrap;
 }
 
 #footer {
