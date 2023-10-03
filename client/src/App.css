@@ -2,59 +2,66 @@
   box-sizing: border-box;
 }
 
-button:hover {
-  cursor: pointer;
-  opacity: .75;
-}
-
-.App {
+body {
+  margin: 7% auto 1%;
   text-align: center;
-  margin-top: 6%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+button {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  border-radius: 100px;
+  box-shadow: rgba(40, 44, 52, 0.2) 0 -25px 18px -14px inset, rgba(40, 44, 52, 0.2) 0 1px 2px, rgba(40, 44, 52, 0.2) 0 2px 4px, rgba(40, 44, 52, 0.2) 0 4px 8px, rgba(40, 44, 52, 0.2) 0 8px 16px, rgba(40, 44, 52, 0.2) 0 16px 32px;
   color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 7px 15px;
+  text-align: center;
+  transition: all 250ms;
+  margin: 1%;
+  border: 0;
+  font-size: 12px;
 }
 
-.App-link {
+button:hover {
   color: #61dafb;
+  box-shadow: rgba(97, 218, 251, 0.35) 0 -25px 18px -14px inset, rgba(97, 218, 251, 0.35) 0 1px 2px, rgba(97, 218, 251, 0.35) 0 2px 4px, rgba(97, 218, 251, 0.35) 0 4px 8px, rgba(97, 218, 251, 0.35) 0 8px 16px, rgba(97, 218, 251, 0.35) 0 16px 32px;
+  transform: scale(1.05);
+}
+
+#header {
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.header-img {
+  width: 170px;
+  height: auto;
 }
 
 #navbar {
-  position: fixed;
-  top: 0%;
   display: flex;
-  width: 100vw;
-  justify-content: space-evenly;
-  background-color: #61dafb;
+  flex-flow: row wrap;
+  width: 80%;
+  justify-content: space-around;
+  align-items: flex-end;
   padding: 1%;
   z-index: 998;
 }
 
 #navbar a {
-  padding: 1rem;
+  padding: 1rem .5rem;
   background-color: #282c34;
+  width: 12%;
   color: white;
   text-decoration: none;
-  box-shadow: 3px 2px 0 0 white;
+  box-shadow: 3px 2px 0 0 #a58cff;
   border-radius: 5px;
 }
 
@@ -73,17 +80,23 @@ button:hover {
 
 #widget {
   position: fixed;
+  background-color: white;
   bottom: 5%;
   right: 5%;
   height: 40%;
-  border: 1px solid #282c34;
+  border: 1px solid #61dafb;
+  border-top: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px #a58cff;
 }
 
 .widget-btn {
   position: fixed;
-  height: 75px;
-  width: 75px;
-  font-size: 40px;
+  text-align: center;
+  height: 70px;
+  width: 70px;
+  font-size: 2.5em;
+  background-color: #a58cff;
   border: none;
   border-radius: 50%;
   bottom: 5%;
@@ -91,20 +104,30 @@ button:hover {
 }
 
 .widget-header {
-  background-color: #61dafb;
+  background-color: #282c34;
+  border-radius: 5px 5px 0 0;
 }
 
 .widget-header h2 {
   margin: 0;
+  color: white;
 }
 
 .close-btn {
-  background-color: #61dafb;
+  background-color: #282c34;
+  color: #a58cff;
   border: none;
   border-radius: 5px;
+  font-size: 1.2em;
   position: absolute;
+  padding: 0;
   top: 0;
   right: 0;
+}
+
+.close-btn:hover {
+  color: #61dafb;
+  box-shadow: none;
 }
 
 .btn-grid {
@@ -118,14 +141,128 @@ button:hover {
 
 .feature-btn {
   border: 1px solid #282c34;
+  color: black;
   border-radius: 5px;
   background-color: white;
 }
 
-#footer {
-  position: absolute;
-  bottom: 0;
+.errors-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #13122380;
+  top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 998;
+}
+
+.errors {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #131223;
+  padding: 2%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.loading-wrapper {
+  width: 50%;
+  height: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: .8;
+  z-index: 999;
+}
+
+.course-grid {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 10%;
+  padding-top: 2px;
+  justify-content: space-evenly;
+  overflow: auto;
+}
+
+.course-card {
+  border: 1px solid #61dafb;
+  border-top: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px #a58cff;
+  width: 30%;
+  height: 25vh;
+  margin: 0 1% 1%;
+}
+
+.course-card:hover {
+  cursor: pointer;
+  transform: translateY(-1%);
+}
+
+.course-card h4 {
+  background-color: #282c34;
+  border-radius: 5px 5px 0 0;
+  color: white;
+  margin: 0;
+  padding: 1%;
+}
+
+.card-body {
+  padding: 2%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.course {
+  margin: 0 auto;
+}
+
+.course-content {
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid #61dafb;
+  border-radius: 5px;
+  padding: 2%;
+  box-shadow: 1px 1px #a58cff;
+}
+
+#dashboard {
+  display: grid;
+  height: 80vh;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  margin: auto;
+  width: 90%;
+}
+
+#dashboard button {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 2rem;
+}
+
+#my-courses {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  width: 100%;
 }
 
 @keyframes underline {
@@ -142,7 +279,7 @@ button:hover {
 
 @keyframes press {
   from {
-    box-shadow: 3px 2px 0 0 white;
+    box-shadow: 3px 2px 0 0 #a58cff;
   }
 
   50% {
@@ -151,7 +288,7 @@ button:hover {
   }
 
   to {
-    box-shadow: 3px 2px 0 0 white;
+    box-shadow: 3px 2px 0 0 #a58cff;
     transform: none;
   }
 }

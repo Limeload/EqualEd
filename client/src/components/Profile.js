@@ -1,8 +1,15 @@
 import React from 'react'
-// displays user info
-const Profile = () => {
+
+const Profile = ({ user }) => {
+
   return (
-    <div>Profile</div>
+    <div>
+      <b>Username:</b> {user.username}
+      <br />
+      <b>Account email:</b> {user.email}
+      <br />
+      <b>Account type:</b> {user.instructor ? "Instructor" : "Student"}
+    </div>
   )
 }
 

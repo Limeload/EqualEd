@@ -46,12 +46,12 @@ const Course = () => {
 
   return (
 
-    <div>
+    <div className="course">
       {edit ?
         <EditCourse course={course} setEdit={setEdit} /> :
         <>
           <h2>{course.title}</h2>
-          <p>{course.content}</p>
+          <p className="course-content">{course.content}</p>
         </>
       }
       {renderLogic(course.id)}

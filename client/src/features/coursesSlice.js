@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// TODO: update these accordingly when backend is finished
-// ** This one may just be a fetch, all other course actions go through the user object. We can just fetch every time the course catalog
-// is visited via a useEffect call to handle new, updated, or deleted courses. **
-
 export const fetchCourses = createAsyncThunk("courses/fetchCourses", async () => {
   const response = await fetch("/api/courses");
   const data = await response.json();
@@ -41,7 +37,7 @@ const coursesSlice = createSlice({
       course.content = action.payload.content;
     },
     courseDeleted(state, action) {
-      state.entities = state.entities.filter(c => c.id !== action.payload.id)
+      state.entities = state.entities.filter(c => c.id !== action.payload)
     },
     resetNew(state) {
       state.newCourse = false

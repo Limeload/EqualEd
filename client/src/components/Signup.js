@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { signUpPost } from '../features/sessionsSlice'
-import { useNavigate, useMatch } from 'react-router-dom'
+import { useMatch, useNavigate } from 'react-router-dom'
 
 const Signup = () => {
 
   const dispatch = useDispatch()
+  const loggedIn = useSelector(state => state.sessions.loggedIn)
+
   const navigate = useNavigate()
   const match = useMatch('/signup/*')
   const role = match.pathname === "/signup/student" ? "Student" : match.pathname === "/signup/instructor" ? "Instructor" : null
@@ -19,6 +21,12 @@ const Signup = () => {
     instructor: isInstructor
   })
 
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/profile")
+    }
+  }, [loggedIn])
+
   const handleChange = (e) => {
     const value = e.target.value
     setSignup({
@@ -30,7 +38,6 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(signUpPost(signup))
-    navigate("/")
   }
 
   return (
