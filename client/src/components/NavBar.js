@@ -95,7 +95,7 @@ const NavBar = () => {
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "active" : ""
+          isPending ? "pending" : isActive ? "" : ""
         }
         onClick={handleClick}
       >

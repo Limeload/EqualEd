@@ -56,8 +56,9 @@ button:hover {
 }
 
 #navbar a {
-  padding: 1rem;
+  padding: 1rem .5rem;
   background-color: #282c34;
+  width: 12%;
   color: white;
   text-decoration: none;
   box-shadow: 3px 2px 0 0 #a58cff;
