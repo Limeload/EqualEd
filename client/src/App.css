@@ -239,10 +239,16 @@ button:hover {
   width: 90%;
 }
 
+#dashboard button {
+  width: 50%;
+  margin: 0 auto;
+}
+
 #profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  line-height: 2rem;
 }
 
 #my-courses {
