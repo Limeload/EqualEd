@@ -45,22 +45,6 @@ const NavBar = () => {
         >
           Login
         </NavLink>
-        <NavLink
-          to="/signup/student"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          Student Signup
-        </NavLink>
-        <NavLink
-          to="/signup/instructor"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          Instructor Signup
-        </NavLink>
       </nav>
     )
   }

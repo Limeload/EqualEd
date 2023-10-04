@@ -8,13 +8,23 @@ EqualEd is an educational platform dedicated to promoting accessibility for stud
 - React.js: The frontend library for creating interactive user interfaces.
 - PostgreSQL: The relational database management system for storing data.
 - HTML, CSS, and JavaScript: Frontend technologies for creating the user interface.
-- Bootstrap: A frontend framework for responsive and user-friendly design.
+- OpenAI-Ruby: A Ruby gem for integration with the OpenAI API
 - Devise: A Ruby gem for user authentication.
 - Other Ruby gems for database management, validations, and more (customize based on your project's needs).
 
 ## AI Integration Features
 
 EqualEd leverages the power of artificial intelligence (AI) to enhance accessibility and provide a more inclusive learning experience. Here are some key AI integration features:
+
+* Dynamic Language Translation
+
+EqualEd harnesses the power of ChatGPT to swiftly translate course content for multilingual students.
+
+* One-Click Summarization
+
+With the click of a button, students that may struggle with long paragraphs or have difficulty grasping the material can request ChatGPT to summarize content for them.
+
+### Coming Soon
 
 * Auto-Transcription
 
@@ -45,10 +55,13 @@ The AI-driven adaptive learning feature customizes learning pathways for individ
 To get started with EqualEd, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/Limeload/equaled.git`
-2. Install the necessary dependencies:
+2. Head on over to [OpenAI](https://platform.openai.com/account/api-keys) and grab your very own API key.
+3. While in the root directory of the project, type `touch .env` in the console to create an env file, then paste `OPENAI_ACCESS_TOKEN=<your own super secret api key here>` into it and save.
+4. Install the necessary dependencies:
    - Backend:
      - `bundle install`
-     - Set up the database: `rails db:create db:migrate`
+     - Make sure you have PostgreSQL running (here's some [help](https://www.freecodecamp.org/news/how-to-get-started-with-postgresql-9d3bc1dd1b11/))
+     - Set up the database: `rails db:create db:migrate`. Optionally, you can also run `rails db:seed` for some free data!
      - Start the backend server: `rails s` (runs on http://localhost:3000)
    - Frontend (React.js):
      - Change directory to the client folder: `cd client`

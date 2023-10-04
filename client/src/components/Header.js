@@ -7,6 +7,7 @@ const Header = () => {
     <div id="header">
       <img src={EqualEd} alt="Equal Ed" className="header-img" />
       <NavBar />
+      <hr />
     </div>
   )
 }
