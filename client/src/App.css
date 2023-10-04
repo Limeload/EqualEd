@@ -181,6 +181,16 @@ button:hover {
   z-index: 999;
 }
 
+.home-img {
+  max-width: 500px;
+  width: auto;
+  height: auto;
+}
+
+.home-img:nth-child(2) {
+  transform: scaleX(-1);
+}
+
 .course-grid {
   display: flex;
   flex-flow: row wrap;
