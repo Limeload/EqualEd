@@ -9,7 +9,7 @@ import NewCourse from './components/NewCourse';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Accessibility from './components/Accessibility';
-import { ColorRing } from 'react-loader-spinner'
+import LoadingSpinner from './components/LoadingSpinner';
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { fetchUser, courseCreated, resetSessErrors } from './features/sessionsSlice';
@@ -22,7 +22,6 @@ function App() {
 
   const loading = useSelector(state => state.sessions.status === "loading" ? true : false)
   const errors = useSelector(state => state.sessions.errors.concat(state.courses.errors))
-  const loggedIn = useSelector(state => state.sessions.loggedIn)
   const newCourse = useSelector(state => state.courses.newCourse)
   const errorCheck = errors[0] ? true : false
   const [showErrors, setShowErrors] = useState(false)
@@ -61,14 +60,7 @@ function App() {
       <Header />
       {
         loading ?
-          <ColorRing
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="color-ring-loading"
-            wrapperClass="loading-wrapper"
-            colors={['#8cfff4', '#8cedff', '#8cc4ff', '#8c9cff', '#a58cff']}
-          /> :
+          <LoadingSpinner /> :
           null
       }
       {
