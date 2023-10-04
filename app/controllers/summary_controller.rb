@@ -1,10 +1,10 @@
 class SummaryController < ApplicationController
   skip_before_action :authorize
+  wrap_parameters format: []
 
-  def summarize
-    summary = SummaryService.new(summary_params)
-    response = summary.summarize
-    render json: response, status: :ok
+  def summarize_text
+    summary = SummaryService.new(summary_params).summarize
+    render json: summary, status: :ok
   end
 
   private

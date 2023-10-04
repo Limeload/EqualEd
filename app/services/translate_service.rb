@@ -8,14 +8,13 @@ class TranslateService
   end
 
   def translate
-    response = client.edits(
-      parameters: {
-        model: "text-davinci-edit-001",
-        input: text,
-        instruction: "Translate it to #{lang}"
-      }
-    )
-    response.dig("choices", 0, "message")
+    response = client.chat(
+    parameters: {
+        model: "gpt-3.5-turbo", # Required.
+        messages: [{ role: "user", content: "Translate this into #{lang} for me: #{text}"}], # Required.
+        temperature: 0.7,
+    })
+  response.dig("choices", 0, "message", "content")
   end
 
   private

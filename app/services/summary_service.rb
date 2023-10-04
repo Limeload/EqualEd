@@ -1,19 +1,18 @@
 class SummaryService
   attr_reader :text
 
-  def initialize(text:)
+  def initialize(text)
     @text = text
   end
 
   def summarize
-    response = client.edits(
-      parameters: {
-        model: "text-davinci-edit-001",
-        input: text,
-        instruction: "Summarize this in a way that is easily understood"
-      }
-    )
-    response.dig("choices", 0, "message")
+    response = client.chat(
+    parameters: {
+        model: "gpt-3.5-turbo", # Required.
+        messages: [{ role: "user", content: "Can you summarize this in a way that is easily understood: #{text}"}], # Required.
+        temperature: 0.7,
+    })
+    response.dig("choices", 0, "message", "content")
   end
 
   private
