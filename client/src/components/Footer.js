@@ -1,31 +1,45 @@
 import React from 'react'
-import EqualEd from '../assets/EqualEd.png'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
 
   return (
     <div id="footer">
-      <nav id="navbar">
-        <NavLink to="/about">
+      <hr />
+      <nav className="bottom-nav">
+        <Link to="/about">
           About
-        </NavLink>
-        <NavLink to="/features">
+        </Link>
+        <Link to="/features">
           Features
-        </NavLink>
-        <NavLink to="/accessibility">
+        </Link>
+        <Link to="/accessibility">
           Accessibility
-        </NavLink>
-        <NavLink to="/careers">
+        </Link>
+        <Link to="/careers">
           Careers
-        </NavLink>
-        <NavLink to="/resources">
+        </Link>
+        <Link to="/resources">
           Resources
-        </NavLink>
-        <NavLink to="/support">
+        </Link>
+        <Link to="/support">
           Support
-        </NavLink>
+        </Link>
       </nav>
+      <div className="bottom">
+        <p>© 2023 EqualEd. All rights reserved.</p>
+        <nav className="mini-nav">
+          <Link to="/terms">
+            Terms
+          </Link>
+          <Link to="/privacy">
+            Privacy
+          </Link>
+          <Link to="/cookies">
+            Cookies
+          </Link>
+        </nav>
+      </div>
     </div>
   )
 }

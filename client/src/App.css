@@ -3,8 +3,23 @@
 }
 
 body {
-  margin: 7% auto 1%;
+  margin: 8% auto 6%;
   text-align: center;
+  font-family: Georgia, sans-serif;
+}
+
+hr {
+  background: linear-gradient(to right, #8cfff4, #a58cff);
+  height: 3px;
+  width: 100%;
+  border: none;
+  margin: 0;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button {
@@ -82,8 +97,8 @@ button:hover {
   position: fixed;
   background-color: white;
   bottom: 5%;
-  right: 5%;
-  height: 40%;
+  right: 3%;
+  height: 45%;
   border: 1px solid #61dafb;
   border-top: none;
   border-radius: 5px;
@@ -101,7 +116,7 @@ button:hover {
   border: none;
   border-radius: 50%;
   bottom: 5%;
-  right: 5%;
+  right: 3%;
   z-index: 997;
 }
 
@@ -143,9 +158,18 @@ button:hover {
 
 .feature-btn {
   border: 1px solid #282c34;
-  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
   border-radius: 5px;
-  background-color: white;
+  background-color: #a58cff;
+  min-height: 70px;
+}
+
+.icon {
+  font-size: 1.5em;
 }
 
 .errors-wrapper {
@@ -181,14 +205,69 @@ button:hover {
   z-index: 999;
 }
 
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+#home p {
+  width: 50%;
+  margin: 1% auto;
+  border: 2px solid linear-gradient(to right, #8cfff4, #a58cff);
+  line-height: 1.5em;
+}
+
+#home span {
+  color: #61dafb;
+  font-weight: bold;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 1%;
+}
+
+.image-link {
+  border: 1px solid #282c34;
+  box-shadow: 3px 2px #a58cff;
+  border-radius: 5px;
+}
+
+.image-link h2 {
+  background-color: #282c34;
+  color: white;
+  margin: -1% auto 0;
+}
+
+.image-link:hover {
+  transform: translate(2px, 3px);
+}
+
 .home-img {
   max-width: 500px;
   width: auto;
   height: auto;
+  border-radius: 5px 5px 0 0;
 }
 
-.home-img:nth-child(2) {
-  transform: scaleX(-1);
+.filter-container {
+  margin: 0 auto;
+  padding: 10px;
+  width: 60%;
+  border-radius: 5px;
+}
+
+.filter-input {
+  width: 90%;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .course-grid {
@@ -206,7 +285,7 @@ button:hover {
   border-radius: 5px;
   box-shadow: 1px 1px #a58cff;
   width: 30%;
-  height: 25vh;
+  height: 30vh;
   margin: 0 1% 1%;
 }
 
@@ -240,6 +319,7 @@ button:hover {
   border-radius: 5px;
   padding: 2%;
   box-shadow: 1px 1px #a58cff;
+  line-height: 1.5em;
 }
 
 #dashboard {
@@ -270,11 +350,102 @@ button:hover {
 }
 
 #footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   position: fixed;
   bottom: 0;
   left: 0;
   background-color: white;
   width: 100%;
+}
+
+.bottom-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: flex-end;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: #a58cff;
+}
+
+.bottom-nav a:hover {
+  color: #282c34;
+}
+
+.bottom {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  font-size: .8em;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mini-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10%;
+}
+
+.mini-nav a {
+  color: #282c34;
+  text-decoration: none;
+}
+
+.mini-nav a:hover {
+  color: white;
+}
+
+/* image carousel css */
+.slideshow {
+  margin: auto;
+  width: 50vw;
+  aspect-ratio: calc(16 / 9);
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.prev-btn {
+  position: absolute;
+  background-color: #282c34;
+  top: 50%;
+  left: 16px;
+}
+
+.next-btn {
+  position: absolute;
+  background-color: #282c34;
+  top: 50%;
+  right: 16px;
+}
+
+.prev-btn:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.next-btn:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 @keyframes underline {
@@ -303,24 +474,4 @@ button:hover {
     box-shadow: 3px 2px 0 0 #a58cff;
     transform: none;
   }
-}
-
-.filter-container {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f5f5f5;
-}
-
-.filter-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.filter-input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }

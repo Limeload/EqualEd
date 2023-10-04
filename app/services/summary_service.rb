@@ -9,7 +9,7 @@ class SummaryService
     response = client.chat(
     parameters: {
         model: "gpt-3.5-turbo", # Required.
-        messages: [{ role: "user", content: "Can you summarize this in a way that is easily understood: #{text}"}], # Required.
+        messages: [{ role: "user", content: "Summarize this in a way that can easily understood by someone in middle school: #{text}"}], # Required.
         temperature: 0.7,
     })
     response.dig("choices", 0, "message", "content")

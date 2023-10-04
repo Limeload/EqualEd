@@ -42,6 +42,7 @@ const NewCourse = () => {
           <textarea
             name="content"
             onChange={handleChange}
+            rows="10" cols="50"
             placeholder='Paste the content of your course here!'
             value={form.content}
           />
