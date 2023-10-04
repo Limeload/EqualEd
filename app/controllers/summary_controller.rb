@@ -4,7 +4,7 @@ class SummaryController < ApplicationController
 
   def summarize_text
     summary = SummaryService.new(summary_params).summarize
-    render json: summary, status: :ok
+    render json: summary.to_json, status: :ok
   end
 
   private

@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+//TODO: move OpenAiContext functions here, get rid of loading state reducers
+
 export const fetchUser = createAsyncThunk("sessions/fetchUser", async () => {
   const response = await fetch("/api/me");
   const data = await response.json();
@@ -34,8 +36,6 @@ export const signUpPost = createAsyncThunk("sessions/signUpPost", async (form) =
   const user = await r.json();
   return user;
 })
-
-// TODO: add and remove course actions for enrollment
 
 export const addEnrollment = createAsyncThunk("sessions/addEnrollment", async (id, { getState }) => {
   const state = getState();
@@ -89,8 +89,6 @@ export const deleteCourse = createAsyncThunk("sessions/deleteCourse", async (id)
   return r.data;
 })
 
-// TODO: add instructor created course actions
-
 const sessionsSlice = createSlice({
   name: "sessions",
   initialState: {
@@ -101,10 +99,6 @@ const sessionsSlice = createSlice({
     errors: []
   },
   reducers: {
-    // TODO: change to add instructor course
-    // addUserReview(state, action) {
-    //   state.currentUser.reviews.push(action.payload)
-    // },
     logOut(state) {
       state.currentUser = {}
       state.loggedIn = false
@@ -114,6 +108,12 @@ const sessionsSlice = createSlice({
     },
     resetSessErrors(state) {
       state.errors = []
+    },
+    setLoading(state) {
+      state.status = "loading"
+    },
+    setIdle(state) {
+      state.status = "idle"
     }
   },
   extraReducers: builder => {
@@ -221,7 +221,7 @@ const sessionsSlice = createSlice({
       })
   }
 })
-// TODO: remember to export new actions
-export const { /* addUserReview, */ logOut, resetEdit, resetSessErrors } = sessionsSlice.actions;
+
+export const { setLoading, setIdle, logOut, resetEdit, resetSessErrors } = sessionsSlice.actions;
 
 export default sessionsSlice.reducer;
